@@ -153,9 +153,9 @@ namespace AutoWasmApiGenerator
                 useRouteParam = true;
                 methodRoute = $"{methodScoped}/{customRoute}";
             }
-            else
+            catch (Exception ex)
             {
-                methodRoute = customRoute!;
+                context.ReportDiagnostic(DiagnosticDefinitions.WAG00010(Location.None, ex.Message));
             }
             //var methodRoute = $"{methodAttribute?.GetNamedValue("Route") ?? methodSymbol.Name.Replace("Async", "")}";
             List<Statement> statements =
